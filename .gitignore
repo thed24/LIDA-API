@@ -1,0 +1,7 @@
+*.terraform
+*.terraform.lock.hcl
+*variables.tf
+*terraform.tfstate.backup
+*terraform.tfstate
+Ops/key.json
+node_modules

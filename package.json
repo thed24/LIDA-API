@@ -1,0 +1,24 @@
+{
+  "name": "lida-api",
+  "version": "1.0.0",
+  "description": "This is a REST API utilising the CQRS design pattern being exposed via Google Clouds serverless functions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions-framework --target=app",
+    "dev": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thed24/LIDA-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thed24/LIDA-API/issues"
+  },
+  "homepage": "https://github.com/thed24/LIDA-API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
