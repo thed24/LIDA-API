@@ -9,7 +9,7 @@ type SensorData = {
 
 const sensorDataRepository = collection<SensorData>('SensorData');
 
-export async function CreateSensorData (command: CreateSensorDataCommand) {
+export async function CreateSensorData (command: CreateSensorDataCommand) : Promise<void> {
     add(sensorDataRepository, { sensorName: command.sensorName, value: command.value, timeStamp: command.timeStamp });
 }
 

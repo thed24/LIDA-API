@@ -8,7 +8,7 @@ type SystemLog = {
 
 const systemLogRepository = collection<SystemLog>('SensorData');
 
-export async function CreateSystemLog (command: CreateSystemLogCommand) {
+export async function CreateSystemLog (command: CreateSystemLogCommand) : Promise<void> {
     add(systemLogRepository, { sensorName: command.sensorName, timeStamp:command.timeStamp });
 }
 
