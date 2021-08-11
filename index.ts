@@ -2,6 +2,9 @@ import { getSensorData, postSensorData } from "./src/functions/sensorData.js";
 import { getSystemLog, postSystemLog } from "./src/functions/systemLog.js";
 import { putState } from "./src/functions/state.js";
 
+import * as admin from "firebase-admin";
+admin.initializeApp();
+
 import express from "express";
 import cors from "cors";
 

@@ -1,13 +1,16 @@
 import express from 'express';
+import { CreateSystemLog, GetSystemLogs } from "../common/entities/systemLog.js";
+import { CreateSystemLogCommand } from "../common/commands/SystemLog/CreateSystemLogCommand.js";
 
-export function getSystemLog (req: express.Request, res: express.Response) {
-  const response = {
-    sensorName: "motor",
-    timeStamp: "10-04-19 12:00:17",
-  };
-  res.status(200).json(response);
+export async function getSystemLog (req: express.Request, res: express.Response) {
+  const systemLogs = await GetSystemLogs();
+
+  res.status(200).json(systemLogs);
 };
 
-export function postSystemLog (req: express.Request, res: express.Response) {
+export async function postSystemLog (req: express.Request, res: express.Response) {
+  const command = new CreateSystemLogCommand(req.body.name);
+  await CreateSystemLog(command);
+
   res.status(200).json({isRunning: "true", OperationSucceeded: "true"});
 };

@@ -45,8 +45,4 @@ resource "google_cloudfunctions_function" "function" {
   source_archive_object = google_storage_bucket_object.zip.name
   trigger_http          = true
   entry_point           = var.function_entry_point
-
-  environment_variables = {
-    MY_ENV_VAR = "todo: secrets"
-  }
 }

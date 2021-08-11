@@ -1,16 +1,16 @@
 import express from 'express';
-import { CreateSensorData} from "../common/models/sensorData.js";
+import { CreateSensorData, GetSensorData } from "../common/entities/sensorData.js";
+import { CreateSensorDataCommand } from "../common/commands/SensorData/CreateSensorDataCommand.js";
 
-export function getSensorData (req: express.Request, res: express.Response) {
-  const response = {
-    sensorName: "oxygen",
-    value: "2.25",
-    timeStamp: "10-04-19 12:00:17",
-  };
-  res.status(200).json(response);
+export async function getSensorData (req: express.Request, res: express.Response) {
+  const sensorData = await GetSensorData();
+
+  res.status(200).json(sensorData);
 };
 
-export function postSensorData (req: express.Request, res: express.Response) {
-  CreateSensorData(req.body.sensorName, req.body.value);
+export async function postSensorData (req: express.Request, res: express.Response) {
+  const command = new CreateSensorDataCommand(req.body.name, req.body.value);
+  await CreateSensorData(command);
+
   res.status(200).json({ isRunning: "true", OperationSucceeded: "true" });
 };
