@@ -5,3 +5,7 @@
 *terraform.tfstate
 Ops/key.json
 node_modules
+*.js
+*.map
+.vscode
+dist

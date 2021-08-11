@@ -1,12 +1,13 @@
 locals {
   timestamp = formatdate("YYMMDDhhmmss", timestamp())
-	index_file_path = abspath("../..")
+	index_file_path = abspath("../../")
 }
 
 data "archive_file" "source" {
   type        = "zip"
   source_dir  = "${local.index_file_path}"
   output_path = "/tmp/function-${local.timestamp}.zip"
+  excludes = [ "node_modules" ]
 }
 
 resource "google_storage_bucket" "bucket" {
@@ -37,20 +38,15 @@ resource "google_project_service" "cb" {
 
 resource "google_cloudfunctions_function" "function" {
   name    = var.function_name
-  runtime = "nodejs12"
+  runtime = "nodejs14"
 
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.zip.name
   trigger_http          = true
   entry_point           = var.function_entry_point
-}
 
-resource "google_cloudfunctions_function_iam_member" "invoker" {
-  project        = google_cloudfunctions_function.function.project
-  region         = google_cloudfunctions_function.function.region
-  cloud_function = google_cloudfunctions_function.function.name
-
-  role   = "roles/cloudfunctions.invoker"
-  member = "allUsers"
+  environment_variables = {
+    MY_ENV_VAR = "todo: secrets"
+  }
 }

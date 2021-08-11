@@ -1,4 +1,4 @@
 cd ../Terraform
-terraform init
+terraform init -upgrade
 terraform plan -lock=false
-terraform apply -lock=false
+yes yes | terraform apply -lock=false
