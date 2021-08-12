@@ -3,10 +3,10 @@ class GetSensorDataQueryDto {
     value: number;
     timeStamp: number;
 
-    constructor(sensorName: string, value: number) { 
+    constructor(sensorName: string, value: number, timeStamp: number) { 
         this.sensorName = sensorName;
         this.value = value;
-        this.timeStamp = Date.now();
+        this.timeStamp = timeStamp;
     }
 }
 

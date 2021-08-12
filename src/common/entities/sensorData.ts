@@ -25,5 +25,5 @@ export async function GetSensorData (sensorDataQuery: GetSensorDataQuery) : Prom
     const endOfRange = sensorDataQuery.dateTimeRange[1];
 
     const sensorData = await query(sensorDataRepository, [where('timeStamp', '>=', startOfRange), where('timeStamp', '<=', endOfRange)]);
-    return sensorData.map(sensorData => { return new GetSensorDataQueryDto(sensorData.data.sensorName, sensorData.data.value) });
+    return sensorData.map(sensorData => { return new GetSensorDataQueryDto(sensorData.data.sensorName, sensorData.data.value, sensorData.data.timeStamp) });
 }

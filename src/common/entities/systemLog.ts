@@ -24,5 +24,5 @@ export async function GetSystemLogs (getSystemLogQuery: GetSystemLogQuery) : Pro
     const endOfRange = getSystemLogQuery.dateTimeRange[1];
 
     const systemLogs = await query(systemLogRepository, [where('timeStamp', '>=', startOfRange), where('timeStamp', '<=', endOfRange)]);
-    return systemLogs.map(systemLog => { return new GetSystemLogQueryDto(systemLog.data.sensorName) });
+    return systemLogs.map(systemLog => { return new GetSystemLogQueryDto(systemLog.data.sensorName, systemLog.data.timeStamp) });
 }
