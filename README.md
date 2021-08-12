@@ -4,9 +4,9 @@ This is a REST API utilising the CQRS design pattern being exposed via Google Cl
 
 # Contracts
 
-## POST /{base_address}/Sensor
+## POST /{base_address}/SensorData
 
-## Request
+## Request Body
 ```
 {
     Name: string,
@@ -22,12 +22,13 @@ This is a REST API utilising the CQRS design pattern being exposed via Google Cl
 }
 ```
 
-## GET /{base_address}/Sensor
+## GET /{base_address}/SensorData
 
-## Request
+## Request Query Parameters
 ```
 {
-    Query: dateTimeRange
+    startDate: number,
+    endDate: number
 }
 ```
 
@@ -44,10 +45,10 @@ This is a REST API utilising the CQRS design pattern being exposed via Google Cl
 
 ## PUT /{base_address}/State
 
-## Request
+## Request Body
 ```
 {
-    IsRunning: bool
+    IsRunning: boolean
 }
 ```
 
@@ -56,6 +57,42 @@ This is a REST API utilising the CQRS design pattern being exposed via Google Cl
 {
     IsRunning: boolean,
     OperationSucceeded: boolean
+}
+```
+## POST /{base_address}/SystemLog
+
+## Request Body
+```
+{
+    Name: string,
+    TimeStamp: dateTime
+}
+```
+## Response
+```
+{
+    IsRunning: boolean,
+    OperationSucceeded: boolean
+}
+```
+
+## GET /{base_address}/SystemLog
+
+## Request Query Parameters
+```
+{
+    startDate: number,
+    endDate: number
+}
+```
+
+## Response
+```
+{
+    [
+        Name: string,
+        TimeStamp: dateTime
+    ]
 }
 ```
 
