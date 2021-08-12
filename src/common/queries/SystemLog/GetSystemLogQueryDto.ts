@@ -1,11 +1,9 @@
 class GetSystemLogQueryDto {
     sensorName: string;
-    value: number;
     timeStamp: number;
 
-    constructor(sensorName: string, value: number) { 
+    constructor(sensorName: string) { 
         this.sensorName = sensorName;
-        this.value = value;
         this.timeStamp = Date.now();
     }
 }

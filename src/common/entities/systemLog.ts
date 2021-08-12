@@ -10,7 +10,7 @@ type SystemLog = {
     timeStamp: number;
 }
 
-const systemLogRepository = collection<SystemLog>('SensorData');
+const systemLogRepository = collection<SystemLog>('SystemLog');
 
 export async function CreateSystemLog (command: CreateSystemLogCommand) : Promise<CreateSystemLogCommandDto> {
     add(systemLogRepository, { sensorName: command.sensorName, timeStamp:command.timeStamp });
@@ -24,5 +24,5 @@ export async function GetSystemLogs (getSystemLogQuery: GetSystemLogQuery) : Pro
     const endOfRange = getSystemLogQuery.dateTimeRange[1];
 
     const systemLogs = await query(systemLogRepository, [where('timeStamp', '>=', startOfRange), where('timeStamp', '<=', endOfRange)]);
-    return systemLogs.map(systemLog => { return new GetSystemLogQueryDto(systemLog.data.sensorName, systemLog.data.timeStamp) });
+    return systemLogs.map(systemLog => { return new GetSystemLogQueryDto(systemLog.data.sensorName) });
 }
