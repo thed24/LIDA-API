@@ -12,7 +12,7 @@ export async function getSystemLog (req: express.Request, res: express.Response)
 }
 
 export async function postSystemLog (req: express.Request, res: express.Response) : Promise<void> {
-  const createSystemLogRequest = new CreateSystemLogCommand(req.body.name);
+  const createSystemLogRequest = new CreateSystemLogCommand(req.body.sensorName);
   const createSystemLogResult = await CreateSystemLog(createSystemLogRequest);
 
   res.status(200).json(createSystemLogResult);
