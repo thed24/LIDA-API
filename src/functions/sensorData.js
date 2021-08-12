@@ -12,21 +12,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postSensorData = exports.getSensorData = void 0;
 const sensorData_js_1 = require("../common/entities/sensorData.js");
 const CreateSensorDataCommand_js_1 = require("../common/commands/SensorData/CreateSensorDataCommand.js");
+const GetSensorDataQuery_js_1 = require("../common/queries/SensorData/GetSensorDataQuery.js");
 function getSensorData(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const sensorData = yield sensorData_js_1.GetSensorData();
+        const filterRange = [Number(req.query.startDate), Number(req.query.endDate)];
+        const getSensorsRequest = new GetSensorDataQuery_js_1.GetSensorDataQuery(filterRange);
+        const sensorData = yield sensorData_js_1.GetSensorData(getSensorsRequest);
         res.status(200).json(sensorData);
     });
 }
 exports.getSensorData = getSensorData;
-;
 function postSensorData(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const command = new CreateSensorDataCommand_js_1.CreateSensorDataCommand(req.body.name, req.body.value);
-        yield sensorData_js_1.CreateSensorData(command);
-        res.status(200).json({ isRunning: "true", OperationSucceeded: "true" });
+        const createSensorRequest = new CreateSensorDataCommand_js_1.CreateSensorDataCommand(req.body.sensorName, req.body.value);
+        const createSensorResult = yield sensorData_js_1.CreateSensorData(createSensorRequest);
+        res.status(200).json(createSensorResult);
     });
 }
 exports.postSensorData = postSensorData;
-;
 //# sourceMappingURL=sensorData.js.map
