@@ -1,4 +1,4 @@
-import { collection, get, update } from 'typesaurus'
+import { collection, get, set, update, upset } from 'typesaurus'
 import { UpdateStateCommand } from '../commands/State/UpdateStateCommand';
 import { UpdateStateCommandDto } from '../commands/State/UpdateStateCommandDto';
 
@@ -10,7 +10,7 @@ const stateRepository = collection<State>('State');
 
 export async function UpdateState (command: UpdateStateCommand) : Promise<UpdateStateCommandDto> {
     const isRunning = command.isRunning;
-    update(stateRepository, "1", { isRunning });
+    upset(stateRepository, "1", { isRunning });
 
     return new UpdateStateCommandDto(isRunning, true);
 }
