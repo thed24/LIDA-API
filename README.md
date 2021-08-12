@@ -2,7 +2,11 @@
 
 This is a REST API utilising the CQRS design pattern being exposed via Google Clouds serverless functions.
 
-# Contracts
+Please see below for a rough contract for the API.
+
+
+
+# Sensor Data
 
 ## POST /{base_address}/SensorData
 
@@ -43,6 +47,8 @@ This is a REST API utilising the CQRS design pattern being exposed via Google Cl
 }
 ```
 
+# State
+
 ## PUT /{base_address}/State
 
 ## Request Body
@@ -59,6 +65,8 @@ This is a REST API utilising the CQRS design pattern being exposed via Google Cl
     OperationSucceeded: boolean
 }
 ```
+
+# System Logs
 ## POST /{base_address}/SystemLog
 
 ## Request Body
