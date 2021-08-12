@@ -8,7 +8,7 @@ Please see below for a rough contract for the API.
 
 # Sensor Data
 
-## POST /{base_address}/SensorData
+## POST {base_address}/SensorData
 
 ## Request Body
 ```
@@ -26,7 +26,7 @@ Please see below for a rough contract for the API.
 }
 ```
 
-## GET /{base_address}/SensorData
+## GET {base_address}/SensorData
 
 ## Request Query Parameters
 ```
@@ -49,7 +49,7 @@ Please see below for a rough contract for the API.
 
 # State
 
-## PUT /{base_address}/State
+## PUT {base_address}/State
 
 ## Request Body
 ```
@@ -67,7 +67,7 @@ Please see below for a rough contract for the API.
 ```
 
 # System Logs
-## POST /{base_address}/SystemLog
+## POST {base_address}/SystemLog
 
 ## Request Body
 ```
@@ -84,7 +84,7 @@ Please see below for a rough contract for the API.
 }
 ```
 
-## GET /{base_address}/SystemLog
+## GET {base_address}/SystemLog
 
 ## Request Query Parameters
 ```
