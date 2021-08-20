@@ -6,7 +6,7 @@
 Ops/key.json
 node_modules
 *.js
-!eslint*
+!.eslint*
 *.map
 .vscode
 dist

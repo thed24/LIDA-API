@@ -1,4 +1,4 @@
-tsc
+npm run build
 Set-Location Ops\Terraform
 terraform init -reconfigure
 terraform plan -lock=false

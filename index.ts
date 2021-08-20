@@ -1,22 +1,18 @@
-import { getSensorData, postSensorData } from "./src/functions/sensorData.js";
-import { getSystemLog, postSystemLog } from "./src/functions/systemLog.js";
-import { putState } from "./src/functions/state.js";
-
 import * as admin from "firebase-admin";
 admin.initializeApp();
 
 import express from "express";
 import cors from "cors";
 
+import { RegisterRoutes } from "./build/routes";
+
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(cors({ origin: true }));
 
-app.get("/SensorData", (req, res) => getSensorData(req, res));
-app.post("/SensorData", (req, res) => postSensorData(req, res));
-
-app.get("/SystemLog", (req, res) => getSystemLog(req, res));
-app.post("/SystemLog", (req, res) => postSystemLog(req, res));
-
-app.put("/State", (req, res) => putState(req, res));
+RegisterRoutes(app);
 
 module.exports.app = app;
