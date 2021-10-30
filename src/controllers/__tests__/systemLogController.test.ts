@@ -12,7 +12,8 @@ jest.mock("../../common/entities/systemLog", () => ({
     new GetSystemLogQueryDto(
       "test2",
       2
-    ),new GetSystemLogQueryDto(
+    ),
+    new GetSystemLogQueryDto(
       "test3",
       3
     )
@@ -29,10 +30,10 @@ it("should return read DTO", async () => {
   ];
 
   // Act
-  var readDto = await controller.readSystemLog(1, 999999);
+  var actual = await controller.readSystemLog(1, 999999);
 
   // Assert
-  expect(readDto).toEqual(expected);
+  expect(actual).toEqual(expected);
 });
 
 it("should return create DTO", async () => {
@@ -41,8 +42,8 @@ it("should return create DTO", async () => {
     const expected = new CreateSystemLogCommandDto(true, true);
   
     // Act
-    var readDto = await controller.createSystemLog("testLog");
+    var actual = await controller.createSystemLog("testLog");
   
     // Assert
-    expect(readDto).toEqual(expected);
+    expect(actual).toEqual(expected);
   });
