@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && node index.js",
     "dev": "tsc && npx functions-framework --target=app",
-    "build": "tsoa spec-and-routes && tsc"
+    "build": "tsoa spec-and-routes && tsc",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "express": "^4.17.1",
     "firebase": "^8.8.1",
     "firebase-admin": "^9.11.0",
+    "jest": "^27.3.1",
     "tsoa": "^3.9.0",
     "typesaurus": "^7.2.0"
   },
