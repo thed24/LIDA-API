@@ -1,31 +1,49 @@
-import { CreateSensorDataCommand } from "../../commands/sensorData/CreateSensorDataCommand";
-import { GetSystemLogQueryDto } from "../../queries/systemLog/GetSystemLogQueryDto";
 import { SystemLogController } from "../systemLogController";
+import { GetSystemLogQueryDto } from "../../queries/systemLog/GetSystemLogQueryDto";
+import { CreateSystemLogCommandDto } from "../../commands/systemLog/CreateSystemLogCommandDto";
 
-it("should return read DTO", () => {
+jest.mock("../../common/entities/systemLog", () => ({
+  CreateSystemLog: () => new CreateSystemLogCommandDto(true, true),
+  GetSystemLogs: () => [
+    new GetSystemLogQueryDto(
+      "test1",
+      1
+    ),
+    new GetSystemLogQueryDto(
+      "test2",
+      2
+    ),
+    new GetSystemLogQueryDto(
+      "test3",
+      3
+    )
+  ]
+}))
+
+it("should return read DTO", async () => {
   // Arrange
   const controller = new SystemLogController();
   const expected = [
-    new GetSystemLogQueryDto("test", 1),
-    new GetSystemLogQueryDto("test", 2),
-    new GetSystemLogQueryDto("test", 3),
+    new GetSystemLogQueryDto("test1", 1),
+    new GetSystemLogQueryDto("test2", 2),
+    new GetSystemLogQueryDto("test3", 3),
   ];
 
   // Act
-  var readDto = controller.readSystemLog(1, 999999);
+  var actual = await controller.readSystemLog(1, 999999);
 
   // Assert
-  expect(readDto).toEqual(expected);
+  expect(actual).toEqual(expected);
 });
 
-it("should return create DTO", () => {
+it("should return create DTO", async () => {
     // Arrange
     const controller = new SystemLogController();
-    const expected = new CreateSensorDataCommand("test", 1);
+    const expected = new CreateSystemLogCommandDto(true, true);
   
     // Act
-    var readDto = controller.createSystemLog("test");
+    var actual = await controller.createSystemLog("testLog");
   
     // Assert
-    expect(readDto).toEqual(expected);
+    expect(actual).toEqual(expected);
   });
